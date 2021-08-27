@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Biblioteca jQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <!--Biblioteca Bootstrap CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <!--Custom Stylesheet-->
+    <link rel="stylesheet" href="../css/estilo.css">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+
+    <title>Cadastro de Produtos</title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <header>
+        <!-- Barra de navegação -->
+        <div class="navbar navbar-dark bg-dark shadow-sm">
+            <div class="container">
+                <a href="/" class="navbar-brand d-flex align-items-center">
+                    <img src="/assets/favicon-32x32.png" alt="icon" width="35" height="35">
+                    <strong>DTP Software</strong>
+                </a>
+                <button class="btn btn-outline-warning" type="button" id="add-produto">Novo Produto</button>
+            </div>
+        </div>
+    </header>
+        <main class="form-produto">
+            <form action="" id="produto-form">
+                <div class="mb-3">
+                    <label for="produtoNomeEntrada" class="form-label">Nome</label>
+                    <input type="text" class="form-control" id="produtoNomeEntrada" placeholder="Digite o nome do produto" required/>
+                </div>
+                <div class="mb-3">
+                    <label for="produtoNomeEntrada" class="form-label">Endereço da Imagem</label>
+                    <input type="url" class="form-control" id="produtoImageUrlEntrada" placeholder="Entre com caminho da imagem" required/>
+                </div>
+                <div class="mb-3">
+                    <label for="produtoNomeEntrada" class="form-label">Preço</label>
+                    <input type="number" class="form-control" id="produtoPrecoEntrada" placeholder="Adicione o valor do produto" required/>
+                </div>
+                <div class="mb-3">
+                    <label for="produtoNomeEntrada" class="form-label">Descrição</label>
+                    <input type="text" class="form-control" id="produtoDescricaoEntrada" placeholder="Digite a descrição do produto" required/>
+                </div>
+                <button type="submit" class="btn btn-warning">Salvar</button>
+            </form>
+        </main>
+        <footer class="mt-auto text-muted py-5">
+            <div class="container">
+                <p class="float-end mb-1">
+                    <a href="#">Voltar ao Inicio</a>
+                </p>
+                <p class="mb-1">Mais projetos em: <a href="https://www.github.com/diegotpereira"></a>.</p>
+            </div>
+        </footer>
+</body>
+</html>
