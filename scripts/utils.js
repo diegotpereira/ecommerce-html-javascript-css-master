@@ -1,22 +1,20 @@
-
-
 // Função para falar com o servidor e devolver um monte de produtos
 async function buscarTodosProdutos() {
-    var produtos =[];
+    var produtos = [];
     var cards = [];
     const errorMessage = "<p>No momento não temos nenhum item em estoque, mas fique à vontade para adicionar seu (s) próprio (s) produto (s)</p>";
 
-    await fetch('', {
+    await fetch('http://localhost:8080/api/produto/lista/', {
         method: 'GET',
         mode: 'cors'
     })
 
     .then(response => response.json())
-    .then(data => produtos = data)
-    .catch(_ => cards.push(errorMessage));
+        .then(data => produtos = data)
+        .catch(_ => cards.push(errorMessage));
 
     if (produtos.length > 0 && cards.length < 1) {
-        for(const index in produtos) {
+        for (const index in produtos) {
             var produto = produtos[index];
 
             var produtoID = produto.id;
@@ -35,7 +33,7 @@ async function buscarTodosProdutos() {
                       <br/>
                       <p><strong>Preço: R$</strong> ${produtoPreco}</p>
                     </div>
-                    <div class=card-footer bg-transparent text-center row"
+                    <div class=card-footer bg-transparent text-center row">
                         <button type="button" class="btn btn-outline-warning btn-sm col" id="comprar-btn">Comprar Produto
                         <button type="button" class="btn btn-outline-warning btn-sm col offset-md-1" id="editar-btn">Editar Produto</button>
                     </div>
@@ -43,9 +41,9 @@ async function buscarTodosProdutos() {
          </div>
         `;
 
-        cards.push(card);
+            cards.push(card);
         }
-    }else if (produtos.length < 1 && cards.length < 1) {
+    } else if (produtos.length < 1 && cards.length < 1) {
         cards.push(errorMessage);
     }
 
@@ -56,15 +54,16 @@ async function buscarTodosProdutos() {
 async function criarNovoProduto(produto) {
     var result = false;
 
-    await fetch('', {
-        method: 'POST',
-        body: JSON.stringify(produto),
-        headers: {
-            'content-type': 'application/json'
-        }
-    })
-    .then(_ => result = true)
-    .catch(_ => result = false);
+    await fetch(`http://localhost:8080/api/produto/add/`, {
+            method: 'POST',
+            mode: 'cors',
+            body: JSON.stringify(produto),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(_ => result = true)
+        .catch(_ => result = false);
 
     return result;
 }
@@ -74,15 +73,15 @@ async function criarNovoProduto(produto) {
 async function atualizarProduto(id, produto) {
     var result = false;
 
-    await fetch(``, {
-        method: 'POST',
-        body: JSON.stringify(produto),
-        headers: {
-            'content-type': 'application/json'
-        }
-    })
-    .then(_ => result = true)
-    .catch(_ => result = false);
+    await fetch(`http://localhost:8080/api/produto/atualizar/${id}`, {
+            method: 'POST',
+            body: JSON.stringify(produto),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(_ => result = true)
+        .catch(_ => result = false);
 
     return result;
 }
@@ -91,16 +90,16 @@ async function atualizarProduto(id, produto) {
 async function buscarProduto(id) {
     var produtos = [];
 
-    await fetch('', {
-        method: 'GET',
-        mode: 'cors'
-    })
-    .then(response => response.json())
-    .then(data => produtos = data)
-    .catch(_ => {});
+    await fetch('http://localhost:8080/api/produto/buscar/' + id, {
+            method: 'GET',
+            mode: 'cors'
+        })
+        .then(response => response.json())
+        .then(data => produtos = data)
+        .catch(_ => {});
 
     if (produtos.length > 0) {
-        for(const index in produtos) {
+        for (const index in produtos) {
             var produto = produtos[index];
 
             if (produto.id == id) {

@@ -4,7 +4,7 @@
 $("#card-container").ready(async function() {
     var cards = await buscarTodosProdutos();
 
-    for(const index in cards) {
+    for (const index in cards) {
         var card = cards[index];
         $("#card-container").append(card);
     }
@@ -49,7 +49,12 @@ $("#produto-form").submit(async function(form) {
 
 // Preencha o formulário de atualização com os valores do produto original
 $("#atualizar-form").ready(async function() {
+
+
     const id = window.location.href.split("?id=").pop();
+    // if (id === undefined) {
+    //     return true;
+    // }
     var produto = await buscarProduto(id);
 
     $("#produtoNomeEntrada").val(produto.nome);
@@ -87,10 +92,13 @@ $("#atualizar-form").submit(async function(form) {
 
 
 // Lidar com a criação do URL do produto de atualização
-$("$card-container").on("click", "#editar-btn", function() {
-    
+$("#card-container").on("click", "#editar-btn", function() {
+
     // Obtenha a id do produto
+    // if (produtoID === undefined) {
+    //     return true;
+    // }
     var produtoID = $(this).parent().parent().parent().attr("id");
-    var ulr = "atualizar-produto.html" + "?id=" + produtoID;
+    var url = "atualizar-produto.html" + "?id=" + produtoID;
     window.location.href = url;
 });
